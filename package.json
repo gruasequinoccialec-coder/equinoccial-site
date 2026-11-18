@@ -5,6 +5,6 @@
   "private": true,
   "scripts": {
     "build": "node build.js",
-    "serve": "npx --yes serve dist"
+    "serve": "npx --yes serve docs"
   }
 }

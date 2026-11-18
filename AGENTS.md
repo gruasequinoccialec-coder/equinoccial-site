@@ -12,11 +12,12 @@ Repositorio: `alexanderua29/equinoccial-site` (rama `main`). Se publica con GitH
 
 ```
 npm run build   # node build.js — arma docs/*.html desde partials/ + pages/ y copia assets/ a docs/assets/
+npm run serve   # npx serve docs — sirve docs/ en local (ej. http://localhost:3000)
 ```
 
 No hay tests, linter ni verificación de tipos.
 
-Para ver el sitio en local: extensión "Live Server" de VS Code sobre `docs/index.html` (después de `npm run build`).
+Alternativa para ver el sitio en local: extensión "Live Server" de VS Code sobre `docs/index.html` (después de `npm run build`).
 
 ## Arquitectura
 

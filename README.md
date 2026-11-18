@@ -31,8 +31,16 @@ las piezas en los archivos finales dentro de `docs/`):
 npm run build
 ```
 
-Para verlo en el navegador, instala la extensión **Live Server** en VS Code, haz clic derecho sobre
-`docs/index.html` → "Open with Live Server". Se actualiza solo cada vez que vuelves a compilar.
+Luego, para verlo en el navegador con un servidor local:
+
+```
+npm run serve
+```
+
+Esto abre algo como `http://localhost:3000` — ábrelo en tu navegador y navega el sitio completo.
+
+> 💡 Alternativa: instala la extensión **Live Server** en VS Code, haz clic derecho sobre
+> `docs/index.html` → "Open with Live Server".
 
 ## 4. Estructura del proyecto
 
