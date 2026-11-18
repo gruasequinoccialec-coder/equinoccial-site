@@ -18,6 +18,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, "docs");
@@ -115,8 +116,18 @@ function fill(text, key, value) {
   return text.split("{{" + key + "}}").join(value);
 }
 
+// Huella corta del contenido de un archivo: cambia solo cuando el archivo cambia.
+// Se agrega como ?v=... para que los navegadores no usen una copia vieja en caché.
+function version(relPath) {
+  return crypto.createHash("md5").update(fs.readFileSync(path.join(ROOT, relPath))).digest("hex").slice(0, 8);
+}
+
 function build() {
-  const layout = readFile("partials/layout.html");
+  const cssV = version("assets/css/styles.css");
+  const jsV = version("assets/js/script.js");
+  const layout = readFile("partials/layout.html")
+    .replace('href="assets/css/styles.css"', 'href="assets/css/styles.css?v=' + cssV + '"')
+    .replace('src="assets/js/script.js"', 'src="assets/js/script.js?v=' + jsV + '"');
   const header = readFile("partials/header.html");
   const footer = readFile("partials/footer.html");
 
