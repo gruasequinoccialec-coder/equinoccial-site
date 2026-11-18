@@ -28,8 +28,11 @@ Sistema de ensamblado por plantillas:
 - `pages/*.content.html` — solo el contenido de cada página (sin head/header/footer).
 - `build.js` — define el arreglo `PAGES` (`contentFile`, `outputFile`, `title`, `description`), reemplaza los marcadores, borra y regenera `docs/`, y copia `assets/` a `docs/assets/`.
 - `assets/css/styles.css`, `assets/js/script.js` (menú móvil, video del hero, formulario de cotización), `assets/img/`.
+- `public/` — archivos que van a la raíz del sitio tal cual: favicons, `.nojekyll` y, si se usa dominio propio, `CNAME`.
+- `build.js` también genera `docs/sitemap.xml` y `docs/robots.txt`, y contiene `SITE_URL` (dirección pública usada en etiquetas para redes sociales, sitemap y datos estructurados). Al conectar un dominio propio, cambiar `SITE_URL` y agregar `public/CNAME`.
+- Video del hero: `hero-video-mobile.mp4` (640 px, para pantallas ≤ 700 px) y `hero-video.mp4` (1280 px). Mantenerlos livianos (≈1 MB y ≈3 MB).
+- La sección de certificaciones está comentada en `pages/index.content.html` hasta tener logos reales.
 - `docs/` — salida generada y publicada. **Nunca editar `docs/` a mano**: `npm run build` la borra y la regenera.
-- `dist/` — salida antigua, ya no se usa (está en `.gitignore`).
 
 ## Tareas comunes
 

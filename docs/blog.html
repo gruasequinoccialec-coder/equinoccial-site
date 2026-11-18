@@ -5,17 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog — Equinoccial Maniobras e Izajes</title>
 <meta name="description" content="Noticias, casos de proyectos y consejos técnicos de Equinoccial.">
+<link rel="canonical" href="https://alexanderua29.github.io/equinoccial-site/blog.html">
+<meta name="theme-color" content="#0D0D0D">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_EC">
+<meta property="og:site_name" content="Equinoccial — Maniobras e Izajes">
+<meta property="og:title" content="Blog — Equinoccial Maniobras e Izajes">
+<meta property="og:description" content="Noticias, casos de proyectos y consejos técnicos de Equinoccial.">
+<meta property="og:url" content="https://alexanderua29.github.io/equinoccial-site/blog.html">
+<meta property="og:image" content="https://alexanderua29.github.io/equinoccial-site/assets/img/hero-poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
+
 </head>
 <body id="top">
 <header>
-  <a href="index.html" style="text-decoration:none;">
+  <a href="index.html" class="brand">
     <div class="logo"><span class="gold">EQUI</span><span class="gray">NOCCIAL</span></div>
     <span class="tagline">MANIOBRAS E IZAJES</span>
   </a>
-  <nav>
+  <nav aria-label="Menú principal">
     <a href="index.html#nosotros">Nosotros</a>
     <div class="has-dropdown">
       <a href="index.html#servicios">Servicios ▾</a>
@@ -34,15 +52,15 @@
     <a href="index.html#contacto">Contacto</a>
   </nav>
   <a href="index.html#contacto" class="btn-primary">Cotizar</a>
-  <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+  <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<div class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil">
   <a href="index.html#nosotros">Nosotros</a>
   <div class="mobile-has-dropdown">
-    <button class="mobile-dropdown-toggle" aria-expanded="false">Servicios <span class="chevron">▾</span></button>
+    <button class="mobile-dropdown-toggle" type="button" aria-expanded="false">Servicios <span class="chevron">▾</span></button>
     <div class="mobile-dropdown">
       <a href="index.html#flota">Grúas telescópicas</a>
       <a href="index.html#camiones">Camiones grúa</a>
@@ -57,9 +75,10 @@
   <a href="blog.html">Blog</a>
   <a href="index.html#contacto">Contacto</a>
   <a href="index.html#contacto" class="btn-primary mobile-cta">Cotizar</a>
-</div>
+</nav>
 <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
 
+<main>
 <section class="page-hero">
   <div class="breadcrumb"><a href="index.html">Inicio</a> / Blog</div>
   <h1>Blog de Equinoccial</h1>
@@ -79,6 +98,7 @@
 </section>
 
 
+</main>
 <footer class="footer-main">
   <div class="footer-grid">
     <div>
@@ -91,7 +111,7 @@
       </div>
     </div>
     <div>
-      <h4>Servicios</h4>
+      <h3 class="footer-title">Servicios</h3>
       <a href="index.html#flota">Grúas telescópicas</a>
       <a href="index.html#camiones">Camiones grúa</a>
       <a href="index.html#servicios">Izajes industriales</a>
@@ -99,7 +119,7 @@
       <a href="index.html#servicios">Transporte de carga</a>
     </div>
     <div>
-      <h4>Menú</h4>
+      <h3 class="footer-title">Menú</h3>
       <a href="index.html#nosotros">Nosotros</a>
       <a href="index.html#flota">Flota</a>
       <a href="index.html#proyectos">Proyectos</a>
@@ -107,7 +127,7 @@
       <a href="index.html#contacto">Trabaja con nosotros</a>
     </div>
     <div>
-      <h4>Contacto</h4>
+      <h3 class="footer-title">Contacto</h3>
       <a href="tel:+593988145824">+593 98 814 5824</a>
       <a href="mailto:gruasequinoccial.ec@gmail.com">gruasequinoccial.ec@gmail.com</a>
       <a href="https://www.google.com/maps/search/?api=1&query=Av.+Panamericana+61,+Cunchibamba,+Ambato,+Ecuador" target="_blank" rel="noopener">Av. Panamericana 61, Cunchibamba, Ambato</a>
@@ -118,7 +138,7 @@
     <span>© 2026 Equinoccial · Maniobras e Izajes. Todos los derechos reservados.</span>
     <div>
       <a href="privacidad.html">Política de Privacidad</a>
-      <a href="#top">Mapa del sitio</a>
+      <a href="#top">Volver arriba ↑</a>
     </div>
   </div>
 </footer>

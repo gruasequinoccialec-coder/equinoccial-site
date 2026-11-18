@@ -58,6 +58,7 @@ equinoccial-site/
 │   ├── css/styles.css   ← todos los estilos del sitio
 │   ├── js/script.js     ← menú móvil, video del hero y formulario
 │   └── img/             ← fotos de la flota y video del hero
+├── public/              ← favicons y archivos que van a la raíz del sitio (aquí iría CNAME para un dominio propio)
 ├── build.js             ← script que arma las páginas finales
 ├── package.json
 └── docs/                ← 🚫 no se edita a mano — se genera con `npm run build` y es lo que se publica
@@ -77,7 +78,12 @@ cada vez que corres `npm run build` y tus cambios se perderían. Edita siempre e
 - **Cambiar colores o estilos** → edita `assets/css/styles.css` (busca `:root` para los colores
   de marca).
 
-## 6. Publicar cambios
+## 6. Dominio propio
+
+Cuando tengas un dominio (ej. `equinoccial.com`): cambia `SITE_URL` al inicio de `build.js`, crea el
+archivo `public/CNAME` con el dominio dentro, compila con `npm run build` y publica.
+
+## 7. Publicar cambios
 
 El sitio se publica con **GitHub Pages** desde la carpeta `docs/` de la rama `main`
 (repositorio `alexanderua29/equinoccial-site`). Después de compilar:

@@ -1,134 +1,175 @@
-  (function(){
-    var hamburger = document.getElementById('hamburgerBtn');
-    var mobileNav = document.getElementById('mobileNav');
-    var backdrop = document.getElementById('mobileNavBackdrop');
+// Menú móvil
+(function(){
+  var hamburger = document.getElementById('hamburgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  var backdrop = document.getElementById('mobileNavBackdrop');
+  if(!hamburger || !mobileNav || !backdrop) return;
 
-    function closeMenu(){
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded','false');
-      mobileNav.classList.remove('open');
-      backdrop.classList.remove('open');
-      document.body.style.overflow='';
-    }
-    function openMenu(){
-      hamburger.classList.add('open');
-      hamburger.setAttribute('aria-expanded','true');
-      mobileNav.classList.add('open');
-      backdrop.classList.add('open');
-      document.body.style.overflow='hidden';
-    }
-    hamburger.addEventListener('click', function(){
-      if(mobileNav.classList.contains('open')){ closeMenu(); } else { openMenu(); }
-    });
-    backdrop.addEventListener('click', closeMenu);
+  function isOpen(){ return mobileNav.classList.contains('open'); }
+  function closeMenu(){
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    hamburger.setAttribute('aria-label','Abrir menú');
+    mobileNav.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  }
+  function openMenu(){
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded','true');
+    hamburger.setAttribute('aria-label','Cerrar menú');
+    mobileNav.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.classList.add('menu-open');
+  }
+  hamburger.addEventListener('click', function(){
+    if(isOpen()){ closeMenu(); } else { openMenu(); }
+  });
+  backdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && isOpen()){ closeMenu(); hamburger.focus(); }
+  });
 
-    // Close menu when a nav link is clicked
-    mobileNav.querySelectorAll('a').forEach(function(link){
-      link.addEventListener('click', closeMenu);
-    });
+  // Cerrar el menú al tocar un enlace
+  mobileNav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', closeMenu);
+  });
 
-    // Mobile "Servicios" accordion
-    var ddToggle = mobileNav.querySelector('.mobile-dropdown-toggle');
-    var dd = mobileNav.querySelector('.mobile-dropdown');
+  // Acordeón "Servicios" en móvil
+  var ddToggle = mobileNav.querySelector('.mobile-dropdown-toggle');
+  var dd = mobileNav.querySelector('.mobile-dropdown');
+  if(ddToggle && dd){
     ddToggle.addEventListener('click', function(){
-      var isOpen = dd.classList.toggle('open');
-      ddToggle.classList.toggle('open', isOpen);
-      ddToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      var open = dd.classList.toggle('open');
+      ddToggle.classList.toggle('open', open);
+      ddToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+  }
 
-    // Close menu on resize to desktop
-    window.addEventListener('resize', function(){
-      if(window.innerWidth > 900){ closeMenu(); }
-    });
-  })();
-// Envío del formulario de cotización: Web3Forms + WhatsApp
+  // Cerrar el menú si la pantalla pasa a tamaño escritorio
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 900 && isOpen()){ closeMenu(); }
+  });
+})();
+
+// Envío del formulario de cotización: Web3Forms (correo) + WhatsApp
 (function(){
   var form = document.getElementById('quote-form');
   if(!form) return;
   var statusMsg = document.getElementById('quote-form-status');
-  var WHATSAPP_NUMBER = "593988145824"; // <-- reemplaza con tu número, código de país sin +, sin espacios
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var WHATSAPP_NUMBER = "593988145824"; // código de país sin +, sin espacios
+
+  function showStatus(type, html){
+    statusMsg.hidden = false;
+    statusMsg.className = 'full form-status ' + type;
+    statusMsg.innerHTML = html;
+  }
+
+  function buildWhatsAppText(d){
+    var lines = [
+      "\u{1F3D7}️ *Nueva solicitud de cotización*",
+      "_Equinoccial – Maniobras e Izajes_",
+      "",
+      "\u{1F464} *Nombre:* " + d.nombre
+    ];
+    if(d.empresa) lines.push("\u{1F3E2} *Empresa:* " + d.empresa);
+    lines.push("\u{1F4DE} *Teléfono:* " + d.telefono);
+    lines.push("\u{2709}️ *Correo:* " + d.email);
+    if(d.sector) lines.push("\u{2699}️ *Sector:* " + d.sector);
+    if(d.servicio) lines.push("\u{1F69B} *Servicio:* " + d.servicio);
+    if(d.mensaje){ lines.push(""); lines.push("\u{1F4DD} *Detalle:*"); lines.push(d.mensaje); }
+    return encodeURIComponent(lines.join("\n"));
+  }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
 
-    var formData = new FormData(form);
-    var nombre = formData.get('name') || '';
-    var empresa = formData.get('company') || '';
-    var telefono = formData.get('phone') || '';
-    var email = formData.get('email') || '';
-    var sector = formData.get('sector') || '';
-    var servicio = formData.get('service') || '';
-    var mensaje = formData.get('message') || '';
+    // Validación con mensajes del navegador (campos obligatorios, correo válido, casilla de privacidad)
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
 
-    statusMsg.style.display = 'block';
-    statusMsg.style.color = 'var(--light-gray)';
-    statusMsg.textContent = 'Enviando solicitud...';
+    var fd = new FormData(form);
+    var d = {
+      nombre: (fd.get('name') || '').trim(),
+      empresa: (fd.get('company') || '').trim(),
+      telefono: (fd.get('phone') || '').trim(),
+      email: (fd.get('email') || '').trim(),
+      sector: fd.get('sector') || '',
+      servicio: fd.get('service') || '',
+      mensaje: (fd.get('message') || '').trim()
+    };
+    var waUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + buildWhatsAppText(d);
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    showStatus('info', 'Enviando solicitud...');
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
-      body: formData
+      body: fd
     })
     .then(function(res){ return res.json(); })
     .then(function(data){
-      if(data.success){
-        statusMsg.style.color = 'var(--gold)';
-        statusMsg.textContent = '¡Solicitud enviada! Te contactaremos pronto.';
+      if(data && data.success){
         form.reset();
-
-var e1 = "\u{1F3D7}\uFE0F"; // 🏗️
-var e2 = "\u{1F464}"; // 👤
-var e3 = "\u{1F3E2}"; // 🏢
-var e4 = "\u{1F4DE}"; // 📞
-var e5 = "\u{2709}\uFE0F"; // ✉️
-var e6 = "\u{2699}\uFE0F"; // ⚙️
-var e7 = "\u{1F69B}"; // 🚛
-var e8 = "\u{1F4DD}"; // 📝
-
-var texto = e1 + " *Nueva solicitud de cotización*%0A" +
-  "_Equinoccial – Maniobras e Izajes_%0A%0A" +
-  e2 + " *Nombre:* " + nombre + "%0A" +
-  (empresa ? e3 + " *Empresa:* " + empresa + "%0A" : "") +
-  e4 + " *Teléfono:* " + telefono + "%0A" +
-  e5 + " *Correo:* " + email + "%0A" +
-  (sector && sector !== "Selecciona un sector" ? e6 + " *Sector:* " + sector + "%0A" : "") +
-  (servicio && servicio !== "Selecciona un servicio" ? e7 + " *Servicio:* " + servicio + "%0A" : "") +
-  (mensaje ? "%0A" + e8 + " *Detalle:*%0A" + mensaje : "");
-        window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + texto, "_blank");
+        showStatus('ok',
+          '¡Solicitud enviada! Te contactaremos pronto.' +
+          '<a class="btn-whatsapp" href="' + waUrl + '" target="_blank" rel="noopener">Enviar también por WhatsApp</a>');
       } else {
-        statusMsg.style.color = '#e74c3c';
-        statusMsg.textContent = 'Hubo un error al enviar. Intenta de nuevo o contáctanos por WhatsApp.';
+        throw new Error('error');
       }
     })
     .catch(function(){
-      statusMsg.style.color = '#e74c3c';
-      statusMsg.textContent = 'Hubo un error al enviar. Intenta de nuevo o contáctanos por WhatsApp.';
+      showStatus('error',
+        'No pudimos enviar el formulario. Revisa tu conexión o envíanos la solicitud por WhatsApp.' +
+        '<a class="btn-whatsapp" href="' + waUrl + '" target="_blank" rel="noopener">Enviar por WhatsApp</a>');
+    })
+    .then(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar solicitud';
     });
   });
 })();
-// Reproducir el video del hero al primer toque/scroll (para modo ahorro de batería en iOS)
+
+// Video del hero: se reproduce solo si el usuario no pidió reducir animaciones
+// y se reintenta al primer toque/scroll (modo ahorro de batería en iOS)
 (function(){
   var heroVideo = document.querySelector('.hero-video');
   if(!heroVideo) return;
 
-  function tryPlayVideo(){
-    heroVideo.play().catch(function(){});
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if(reduceMotion || saveData){
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+    return;
   }
 
-  // Intenta reproducir apenas carga la página
+  function tryPlayVideo(){
+    var p = heroVideo.play();
+    if(p && p.catch) p.catch(function(){});
+  }
   tryPlayVideo();
 
-  // Si sigue pausado, lo intenta de nuevo en la primera interacción del usuario
   var events = ['touchstart', 'scroll', 'click'];
   function onFirstInteraction(){
-    if(heroVideo.paused){
-      tryPlayVideo();
-    }
-    events.forEach(function(evt){
-      window.removeEventListener(evt, onFirstInteraction);
-    });
+    if(heroVideo.paused){ tryPlayVideo(); }
+    events.forEach(function(evt){ window.removeEventListener(evt, onFirstInteraction); });
   }
   events.forEach(function(evt){
-    window.addEventListener(evt, onFirstInteraction, { once: false, passive: true });
+    window.addEventListener(evt, onFirstInteraction, { passive: true });
   });
+
+  // Pausar el video cuando no está en pantalla para ahorrar batería y datos
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ tryPlayVideo(); } else { heroVideo.pause(); }
+      });
+    }).observe(heroVideo);
+  }
 })();

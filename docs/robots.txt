@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alexanderua29.github.io/equinoccial-site/sitemap.xml

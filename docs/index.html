@@ -5,17 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Equinoccial — Maniobras e Izajes</title>
 <meta name="description" content="Alquiler de grúas telescópicas, camiones grúa e izajes industriales en Ambato y a nivel nacional. Más de 25 años de experiencia.">
+<link rel="canonical" href="https://alexanderua29.github.io/equinoccial-site/">
+<meta name="theme-color" content="#0D0D0D">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_EC">
+<meta property="og:site_name" content="Equinoccial — Maniobras e Izajes">
+<meta property="og:title" content="Equinoccial — Maniobras e Izajes">
+<meta property="og:description" content="Alquiler de grúas telescópicas, camiones grúa e izajes industriales en Ambato y a nivel nacional. Más de 25 años de experiencia.">
+<meta property="og:url" content="https://alexanderua29.github.io/equinoccial-site/">
+<meta property="og:image" content="https://alexanderua29.github.io/equinoccial-site/assets/img/hero-poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
+<link rel="preload" as="image" href="assets/img/hero-poster.jpg" fetchpriority="high">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Equinoccial — Maniobras e Izajes","description":"Alquiler de grúas telescópicas, camiones grúa, izajes industriales, transporte pesado y rescate pesado 24/7 en Ecuador.","url":"https://alexanderua29.github.io/equinoccial-site/","image":"https://alexanderua29.github.io/equinoccial-site/assets/img/hero-poster.jpg","logo":"https://alexanderua29.github.io/equinoccial-site/icon-192.png","telephone":"+593988145824","email":"gruasequinoccial.ec@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Av. Panamericana 61, Cunchibamba","addressLocality":"Ambato","addressRegion":"Tungurahua","addressCountry":"EC"},"areaServed":{"@type":"Country","name":"Ecuador"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"},"sameAs":["https://www.facebook.com/share/1DT8wPKGLw/","https://www.instagram.com/gruasequinoccial","https://www.tiktok.com/@gruas.equinoccial"]}</script>
 </head>
 <body id="top">
 <header>
-  <a href="index.html" style="text-decoration:none;">
+  <a href="index.html" class="brand">
     <div class="logo"><span class="gold">EQUI</span><span class="gray">NOCCIAL</span></div>
     <span class="tagline">MANIOBRAS E IZAJES</span>
   </a>
-  <nav>
+  <nav aria-label="Menú principal">
     <a href="#nosotros">Nosotros</a>
     <div class="has-dropdown">
       <a href="#servicios">Servicios ▾</a>
@@ -34,15 +53,15 @@
     <a href="#contacto">Contacto</a>
   </nav>
   <a href="#contacto" class="btn-primary">Cotizar</a>
-  <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+  <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<div class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil">
   <a href="#nosotros">Nosotros</a>
   <div class="mobile-has-dropdown">
-    <button class="mobile-dropdown-toggle" aria-expanded="false">Servicios <span class="chevron">▾</span></button>
+    <button class="mobile-dropdown-toggle" type="button" aria-expanded="false">Servicios <span class="chevron">▾</span></button>
     <div class="mobile-dropdown">
       <a href="#flota">Grúas telescópicas</a>
       <a href="#camiones">Camiones grúa</a>
@@ -57,11 +76,13 @@
   <a href="blog.html">Blog</a>
   <a href="#contacto">Contacto</a>
   <a href="#contacto" class="btn-primary mobile-cta">Cotizar</a>
-</div>
+</nav>
 <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
 
+<main>
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-poster.jpg">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/img/hero-video-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
     <source src="assets/img/hero-video.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -83,25 +104,25 @@
 
 <section class="block" id="servicios">
   <div class="block-eyebrow">CASOS DE ÉXITO</div>
-  <div class="section-title">Proyectos que respaldan nuestra experiencia</div>
+  <h2 class="section-title">Proyectos que respaldan nuestra experiencia</h2>
   <div class="section-sub">Maniobras e izajes ejecutados con precisión técnica en distintos sectores del país.</div>
   <div class="projects-grid">
     <div class="project-card">
-      <div class="project-img"><img src="assets/img/servicio-izaje-complejidad.jpg" alt="Izajes de Alta Complejidad" loading="lazy"></div>
+      <div class="project-img"><img src="assets/img/servicio-izaje-complejidad.jpg" alt="Izajes de Alta Complejidad" loading="lazy" decoding="async"></div>
       <div class="project-info">
         <h3>Izajes de Alta Complejidad</h3>
         <div class="specs">Planificación, simulación y ejecución técnica con grúas telescópicas autopropulsadas.</div>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img"><img src="assets/img/servicio-rescate-pesado.jpg" alt="Asistencia Técnica y Rescate Pesado" loading="lazy"></div>
+      <div class="project-img"><img src="assets/img/servicio-rescate-pesado.jpg" alt="Asistencia Técnica y Rescate Pesado" loading="lazy" decoding="async"></div>
       <div class="project-info">
         <h3>Asistencia Técnica y Rescate Pesado</h3>
         <div class="specs">Salvamento, remolque y liberación de vehículos pesados las 24 horas del día.</div>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img"><img src="assets/img/servicio-transporte-extrapesado.jpg" alt="Transporte Extrapesado y Especializado" loading="lazy"></div>
+      <div class="project-img"><img src="assets/img/servicio-transporte-extrapesado.jpg" alt="Transporte Extrapesado y Especializado" loading="lazy" decoding="async"></div>
       <div class="project-info">
         <h3>Transporte Extrapesado y Especializado</h3>
         <div class="specs">Movilización de maquinaria y cargas con exceso de dimensiones o peso a nivel nacional.</div>
@@ -112,11 +133,11 @@
 
 <section class="block" id="flota">
   <div class="block-eyebrow">CATÁLOGO TÉCNICO</div>
-  <div class="section-title">Grúas telescópicas autopropulsadas</div>
+  <h2 class="section-title">Grúas telescópicas autopropulsadas</h2>
   <div class="section-sub">Rough Terrain / All Terrain — gran capacidad de carga y adaptabilidad a terrenos irregulares.</div>
   <div class="fleet-grid">
     <div class="fleet-card">
-      <div class="fleet-img"><img src="assets/img/grua-50ton-luna.jpg" alt="Grúa Luna AT50/40" loading="lazy"></div>
+      <div class="fleet-img"><img src="assets/img/grua-50ton-luna.jpg" alt="Grúa Luna AT50/40" loading="lazy" decoding="async"></div>
       <div class="fleet-info">
         <div class="cap">50 TON</div>
         <h3>Luna AT50/40</h3>
@@ -124,7 +145,7 @@
       </div>
     </div>
     <div class="fleet-card">
-      <div class="fleet-img"><img src="assets/img/grua-40ton-grove.jpg" alt="Grúa Grove RT540E" loading="lazy"></div>
+      <div class="fleet-img"><img src="assets/img/grua-40ton-grove.jpg" alt="Grúa Grove RT540E" loading="lazy" decoding="async"></div>
       <div class="fleet-info">
         <div class="cap">40 TON</div>
         <h3>Grove RT540E</h3>
@@ -132,7 +153,7 @@
       </div>
     </div>
     <div class="fleet-card">
-      <div class="fleet-img"><img src="assets/img/grua-30ton-terex.jpg" alt="Grúa Terex RT230" loading="lazy"></div>
+      <div class="fleet-img"><img src="assets/img/grua-30ton-terex.jpg" alt="Grúa Terex RT230" loading="lazy" decoding="async"></div>
       <div class="fleet-info">
         <div class="cap">30 TON</div>
         <h3>Terex RT230</h3>
@@ -140,7 +161,7 @@
       </div>
     </div>
     <div class="fleet-card">
-      <div class="fleet-img"><img src="assets/img/grua-28ton-lorain.jpg" alt="Grúa Lorain LTR200D" loading="lazy"></div>
+      <div class="fleet-img"><img src="assets/img/grua-28ton-lorain.jpg" alt="Grúa Lorain LTR200D" loading="lazy" decoding="async"></div>
       <div class="fleet-info">
         <div class="cap">28 TON</div>
         <h3>Lorain LTR200D</h3>
@@ -148,7 +169,7 @@
       </div>
     </div>
     <div class="fleet-card">
-      <div class="fleet-img"><img src="assets/img/grua-20ton-ph-wide.jpg" alt="Grúa P&H Omega P&H20" loading="lazy"></div>
+      <div class="fleet-img"><img src="assets/img/grua-20ton-ph-wide.jpg" alt="Grúa P&H Omega P&H20" loading="lazy" decoding="async"></div>
       <div class="fleet-info">
         <div class="cap">20 TON</div>
         <h3>P&H (Omega) P&H20</h3>
@@ -161,41 +182,41 @@
 
 <section class="block" id="camiones">
   <div class="block-eyebrow">MÁS EQUIPOS</div>
-  <div class="section-title">Camiones grúa y equipos de apoyo</div>
+  <h2 class="section-title">Camiones grúa y equipos de apoyo</h2>
   <div class="section-sub">Brazos hidráulicos articulados, manipulador telescópico y montacargas para operación en patio.</div>
   <div class="timeline-scroll">
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/camion-12ton-hiab.jpg" alt="Camión Grúa 12 TON HIAB" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/camion-12ton-hiab.jpg" alt="Camión Grúa 12 TON HIAB" loading="lazy" decoding="async"></div>
       <div class="t-year">12 TON</div>
       <div class="t-text">Brazo HIAB Serie 330 · alcance 23 m</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/camion-10ton-palfinger.jpg" alt="Camión Grúa 10 TON Palfinger" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/camion-10ton-palfinger.jpg" alt="Camión Grúa 10 TON Palfinger" loading="lazy" decoding="async"></div>
       <div class="t-year">10 TON</div>
       <div class="t-text">Palfinger PK23000 · alcance 18 m</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/camion-8ton-fassi.jpg" alt="Camión Grúa 8 TON Fassi" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/camion-8ton-fassi.jpg" alt="Camión Grúa 8 TON Fassi" loading="lazy" decoding="async"></div>
       <div class="t-year">8 TON</div>
       <div class="t-text">Fassi F245 · alcance 16 m</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/camion-6ton-palfinger.jpg" alt="Camión Grúa 6 TON Palfinger" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/camion-6ton-palfinger.jpg" alt="Camión Grúa 6 TON Palfinger" loading="lazy" decoding="async"></div>
       <div class="t-year">6 TON</div>
       <div class="t-text">Palfinger PK15500 · alcance 14 m</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/manipulador-8ton.jpg" alt="Manipulador Telescópico 8 TON" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/manipulador-8ton.jpg" alt="Manipulador Telescópico 8 TON" loading="lazy" decoding="async"></div>
       <div class="t-year">8 TON</div>
       <div class="t-text">Manipulador telescópico · pluma de 12 m</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/montacargas-4.5ton-toyota.jpg" alt="Montacargas 4.5 TON Toyota" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/montacargas-4.5ton-toyota.jpg" alt="Montacargas 4.5 TON Toyota" loading="lazy" decoding="async"></div>
       <div class="t-year">4.5 TON</div>
       <div class="t-text">Montacargas Toyota a gasolina</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/montacargas-3.5ton-lonking.jpg" alt="Montacargas 3.5 TON Lonking" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/montacargas-3.5ton-lonking.jpg" alt="Montacargas 3.5 TON Lonking" loading="lazy" decoding="async"></div>
       <div class="t-year">3.5 TON</div>
       <div class="t-text">Montacargas Lonking diésel</div>
     </div>
@@ -204,15 +225,16 @@
 
 <div class="rescue" id="rescate">
   <div>
-    <h3>¿Emergencia? Rescate pesado 24/7</h3>
+    <h2 class="rescue-title">¿Emergencia? Rescate pesado 24/7</h2>
     <p>Atención inmediata en carretera o en obra, los 365 días del año, en cualquier punto del país.</p>
   </div>
   <a href="tel:+593988145824" class="btn-dark">Llamar ahora</a>
 </div>
 
+<!-- SECCIÓN OCULTA hasta tener los logos reales de certificaciones. Para mostrarla, quita los comentarios y reemplaza los textos entre corchetes por imágenes.
 <section class="block" id="certificaciones">
   <div class="block-eyebrow">RESPALDO Y SEGURIDAD</div>
-  <div class="section-title">Certificaciones que avalan nuestra operación</div>
+  <h2 class="section-title">Certificaciones que avalan nuestra operación</h2>
   <div class="section-sub">Operadores certificados y equipos con mantenimiento preventivo constante. (Reemplazar por logos reales de certificaciones cuando estén disponibles.)</div>
   <div class="certs-row">
     <div class="cert-badge">[ Logo certificación 1 ]</div>
@@ -221,34 +243,35 @@
     <div class="cert-badge">[ Logo gremio / cámara ]</div>
   </div>
 </section>
+-->
 
 <section class="block" id="nosotros">
   <div class="block-eyebrow">TRAYECTORIA</div>
-  <div class="section-title">Más de 25 años de experiencia técnica</div>
+  <h2 class="section-title">Más de 25 años de experiencia técnica</h2>
   <div class="section-sub">Desde nuestros inicios en Ambato hasta convertirnos en referentes de maniobras e izajes a nivel nacional.</div>
   <div class="timeline-scroll">
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/servicio-montaje-desmontaje.jpg" alt="Inicios de la empresa" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/servicio-montaje-desmontaje.jpg" alt="Inicios de la empresa" loading="lazy" decoding="async"></div>
       <div class="t-year">Inicios</div>
       <div class="t-text">Primeras operaciones de izaje en la región central del país.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/grua-30ton-terex.jpg" alt="Primeras grúas propias" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/grua-30ton-terex.jpg" alt="Primeras grúas propias" loading="lazy" decoding="async"></div>
       <div class="t-year">Crecimiento</div>
       <div class="t-text">Incorporación de las primeras grúas telescópicas propias.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/grua-40ton-grove.jpg" alt="Expansión de flota" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/grua-40ton-grove.jpg" alt="Expansión de flota" loading="lazy" decoding="async"></div>
       <div class="t-year">Expansión</div>
       <div class="t-text">Ampliación de la flota a 4 divisiones especializadas.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/accion-postes-electricos.jpg" alt="Cobertura nacional" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/accion-postes-electricos.jpg" alt="Cobertura nacional" loading="lazy" decoding="async"></div>
       <div class="t-year">Consolidación</div>
       <div class="t-text">Cobertura de servicio a nivel nacional, 24/7.</div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-img"><img src="assets/img/accion-subestacion.jpg" alt="Equipo actual" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="timeline-img"><img src="assets/img/accion-subestacion.jpg" alt="Equipo actual" loading="lazy" decoding="async"></div>
       <div class="t-year">Actualidad</div>
       <div class="t-text">13 unidades activas y equipo técnico certificado.</div>
     </div>
@@ -257,20 +280,20 @@
 
 <section class="block" id="proyectos">
   <div class="block-eyebrow">EQUINOCCIAL EN ACCIÓN</div>
-  <div class="section-title">Lo último en obra</div>
+  <h2 class="section-title">Lo último en obra</h2>
   <div class="action-grid">
     <div class="action-card">
-      <img src="assets/img/accion-postes-electricos.jpg" alt="Montaje de postes eléctricos" loading="lazy">
+      <img src="assets/img/accion-postes-electricos.jpg" alt="Montaje de postes eléctricos" loading="lazy" decoding="async">
       <span class="tag">Energía</span>
       <h3>Montaje de postes para tendido eléctrico</h3>
     </div>
     <div class="action-card">
-      <img src="assets/img/accion-grua-amarilla.jpg" alt="Grúa telescópica en operación" loading="lazy">
+      <img src="assets/img/accion-grua-amarilla.jpg" alt="Grúa telescópica en operación" loading="lazy" decoding="async">
       <span class="tag">Industrial</span>
       <h3>Izaje con grúa telescópica en zona urbana</h3>
     </div>
     <div class="action-card">
-      <img src="assets/img/accion-subestacion.jpg" alt="Grúa en subestación eléctrica" loading="lazy">
+      <img src="assets/img/accion-subestacion.jpg" alt="Grúa en subestación eléctrica" loading="lazy" decoding="async">
       <span class="tag">Energía</span>
       <h3>Maniobra de izaje en subestación eléctrica</h3>
     </div>
@@ -278,7 +301,7 @@
 </section>
 
 <section class="block" id="cobertura">
-  <div class="section-title">Confían en nosotros</div>
+  <h2 class="section-title">Confían en nosotros</h2>
   <div class="clients-row">
     <div class="client-chip">Sector minero</div>
     <div class="client-chip">Sector eléctrico</div>
@@ -304,63 +327,66 @@
         <a href="https://www.tiktok.com/@gruas.equinoccial?_r=1&_t=ZS-98e51o8S180" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14.5 2h3c.2 1.7 1.2 3.2 2.7 4v3c-1.4 0-2.7-.4-3.8-1.2v6.7a5.9 5.9 0 11-6-5.9c.3 0 .6 0 .9.06v3.1a2.8 2.8 0 00-.9-.15 2.9 2.9 0 102.9 2.9V2z"/></svg></a>
       </div>
     </div>
-    <form class="quote-form" id="quote-form">
-  <input type="hidden" name="access_key" value="24980a87-1d24-480f-9c37-4ec793a7c804">
-  <input type="hidden" name="subject" value="Nueva solicitud de cotización - Equinoccial">
-  <div>
-    <label for="q-nombre">Nombre completo</label>
-    <input id="q-nombre" name="name" type="text" placeholder="Nombre y apellido" required>
-  </div>
-  <div>
-    <label for="q-empresa">Empresa</label>
-    <input id="q-empresa" name="company" type="text" placeholder="Nombre de la empresa">
-  </div>
-  <div>
-    <label for="q-telefono">Teléfono</label>
-    <input id="q-telefono" name="phone" type="tel" placeholder="09XXXXXXXX" required>
-  </div>
-  <div>
-    <label for="q-email">Correo electrónico</label>
-    <input id="q-email" name="email" type="email" placeholder="correo@empresa.com" required>
-  </div>
-  <div>
-    <label for="q-sector">Sector</label>
-    <select id="q-sector" name="sector">
-      <option>Selecciona un sector</option>
-      <option>Minero</option>
-      <option>Eléctrico</option>
-      <option>Petrolero</option>
-      <option>Construcción industrial</option>
-      <option>Otro</option>
-    </select>
-  </div>
-  <div>
-    <label for="q-servicio">Servicio</label>
-    <select id="q-servicio" name="service">
-      <option>Selecciona un servicio</option>
-      <option>Grúas telescópicas</option>
-      <option>Camiones grúa</option>
-      <option>Izajes industriales</option>
-      <option>Rescate pesado 24/7</option>
-      <option>Transporte de carga</option>
-    </select>
-  </div>
-  <div class="full">
-    <label for="q-mensaje">Detalle del proyecto</label>
-    <textarea id="q-mensaje" name="message" placeholder="Describe la carga, dimensiones, fecha y lugar del proyecto"></textarea>
-  </div>
-  <div class="full checkbox-line">
-    <input type="checkbox" id="q-privacidad">
-    <label for="q-privacidad" style="margin:0;">Acepto la <a href="privacidad.html">Política de Privacidad</a> y el tratamiento de mis datos personales.</label>
-  </div>
-  <div class="full">
-    <button type="submit" class="btn-primary" style="border:none;cursor:pointer;">Enviar solicitud</button>
-  </div>
-  <p class="full" id="quote-form-status" style="display:none;margin-top:10px;font-size:14px;"></p>
-</form>
+    <form class="quote-form" id="quote-form" novalidate>
+      <input type="hidden" name="access_key" value="24980a87-1d24-480f-9c37-4ec793a7c804">
+      <input type="hidden" name="subject" value="Nueva solicitud de cotización - Equinoccial">
+      <input type="hidden" name="from_name" value="Sitio web Equinoccial">
+      <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div>
+        <label for="q-nombre">Nombre completo *</label>
+        <input id="q-nombre" name="name" type="text" placeholder="Nombre y apellido" autocomplete="name" required>
+      </div>
+      <div>
+        <label for="q-empresa">Empresa</label>
+        <input id="q-empresa" name="company" type="text" placeholder="Nombre de la empresa" autocomplete="organization">
+      </div>
+      <div>
+        <label for="q-telefono">Teléfono *</label>
+        <input id="q-telefono" name="phone" type="tel" placeholder="09XXXXXXXX" autocomplete="tel" inputmode="tel" required>
+      </div>
+      <div>
+        <label for="q-email">Correo electrónico *</label>
+        <input id="q-email" name="email" type="email" placeholder="correo@empresa.com" autocomplete="email" required>
+      </div>
+      <div>
+        <label for="q-sector">Sector</label>
+        <select id="q-sector" name="sector">
+          <option value="">Selecciona un sector</option>
+          <option>Minero</option>
+          <option>Eléctrico</option>
+          <option>Petrolero</option>
+          <option>Construcción industrial</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div>
+        <label for="q-servicio">Servicio</label>
+        <select id="q-servicio" name="service">
+          <option value="">Selecciona un servicio</option>
+          <option>Grúas telescópicas</option>
+          <option>Camiones grúa</option>
+          <option>Izajes industriales</option>
+          <option>Rescate pesado 24/7</option>
+          <option>Transporte de carga</option>
+        </select>
+      </div>
+      <div class="full">
+        <label for="q-mensaje">Detalle del proyecto</label>
+        <textarea id="q-mensaje" name="message" placeholder="Describe la carga, dimensiones, fecha y lugar del proyecto"></textarea>
+      </div>
+      <div class="full checkbox-line">
+        <input type="checkbox" id="q-privacidad" name="privacy_accepted" value="Sí" required>
+        <label for="q-privacidad" style="margin:0;">Acepto la <a href="privacidad.html">Política de Privacidad</a> y el tratamiento de mis datos personales. *</label>
+      </div>
+      <div class="full">
+        <button type="submit" class="btn-primary btn-submit">Enviar solicitud</button>
+      </div>
+      <div class="full form-status" id="quote-form-status" role="status" aria-live="polite" hidden></div>
+    </form>
   </div>
 </section>
 
+</main>
 <footer class="footer-main">
   <div class="footer-grid">
     <div>
@@ -373,7 +399,7 @@
       </div>
     </div>
     <div>
-      <h4>Servicios</h4>
+      <h3 class="footer-title">Servicios</h3>
       <a href="#flota">Grúas telescópicas</a>
       <a href="#camiones">Camiones grúa</a>
       <a href="#servicios">Izajes industriales</a>
@@ -381,7 +407,7 @@
       <a href="#servicios">Transporte de carga</a>
     </div>
     <div>
-      <h4>Menú</h4>
+      <h3 class="footer-title">Menú</h3>
       <a href="#nosotros">Nosotros</a>
       <a href="#flota">Flota</a>
       <a href="#proyectos">Proyectos</a>
@@ -389,7 +415,7 @@
       <a href="#contacto">Trabaja con nosotros</a>
     </div>
     <div>
-      <h4>Contacto</h4>
+      <h3 class="footer-title">Contacto</h3>
       <a href="tel:+593988145824">+593 98 814 5824</a>
       <a href="mailto:gruasequinoccial.ec@gmail.com">gruasequinoccial.ec@gmail.com</a>
       <a href="https://www.google.com/maps/search/?api=1&query=Av.+Panamericana+61,+Cunchibamba,+Ambato,+Ecuador" target="_blank" rel="noopener">Av. Panamericana 61, Cunchibamba, Ambato</a>
@@ -400,7 +426,7 @@
     <span>© 2026 Equinoccial · Maniobras e Izajes. Todos los derechos reservados.</span>
     <div>
       <a href="privacidad.html">Política de Privacidad</a>
-      <a href="#top">Mapa del sitio</a>
+      <a href="#top">Volver arriba ↑</a>
     </div>
   </div>
 </footer>
