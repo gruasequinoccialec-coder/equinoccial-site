@@ -169,10 +169,9 @@ function build() {
   console.log("✓ Archivos públicos copiados a docs/");
 
   // Sitemap para Google
-  const today = new Date().toISOString().slice(0, 10);
   const urls = PAGES.filter((p) => !p.noindex)
     .map((p) => SITE_URL + (p.outputFile === "index.html" ? "" : p.outputFile))
-    .map((u) => "  <url><loc>" + u + "</loc><lastmod>" + today + "</lastmod></url>")
+    .map((u) => "  <url><loc>" + u + "</loc></url>")
     .join("\n");
   fs.writeFileSync(
     path.join(DIST, "sitemap.xml"),

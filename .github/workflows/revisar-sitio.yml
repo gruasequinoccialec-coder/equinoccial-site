@@ -1,0 +1,33 @@
+name: Revisar sitio
+
+# Se ejecuta en cada cambio subido a main y en cada propuesta de cambio (pull request).
+# Si algo falla, GitHub envía un correo al dueño del repositorio.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar herramientas de prueba
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Verificar que docs/ esté actualizado
+        run: |
+          node build.js
+          if ! git diff --quiet -- docs; then
+            echo "::error::La carpeta docs/ no coincide con los archivos fuente. Ejecuta 'npm run build' antes de subir los cambios."
+            git diff --stat -- docs
+            exit 1
+          fi
+      - name: Revisar el sitio en celular y PC
+        run: npm test

@@ -13,9 +13,10 @@ Repositorio: `alexanderua29/equinoccial-site` (rama `main`). Se publica con GitH
 ```
 npm run build   # node build.js — arma docs/*.html desde partials/ + pages/ y copia assets/ a docs/assets/
 npm run serve   # npx serve docs — sirve docs/ en local (ej. http://localhost:3000)
+npm test        # revisa docs/ en un navegador real (celular y PC): errores, enlaces, menú, formulario y mapa
 ```
 
-No hay tests, linter ni verificación de tipos.
+`npm test` usa Playwright (`npm install` y `npx playwright install chromium` la primera vez). La misma revisión corre en GitHub Actions (`.github/workflows/revisar-sitio.yml`) en cada push a `main` y en cada pull request, y además verifica que `docs/` coincida con lo que genera `npm run build`. Si falla, GitHub avisa por correo.
 
 Alternativa para ver el sitio en local: extensión "Live Server" de VS Code sobre `docs/index.html` (después de `npm run build`).
 
@@ -41,6 +42,10 @@ Sistema de ensamblado por plantillas:
 - **Editar el blog**: `pages/blog.content.html`.
 - **Colores / estilos**: `assets/css/styles.css`; los colores de marca están en `:root`.
 
+## Mapa de cobertura
+
+Los datos están en el bloque `<script type="application/json" id="coverageData">` de `pages/index.content.html`: `base` y la lista `trabajos` (titulo, lugar, provincia, lat, lon, sector, detalle, enlace). Los puntos que quedan juntos se separan solos; `npm test` comprueba que cada punto se pueda tocar.
+
 ## Publicar
 
-Después de `npm run build`, hacer commit de los cambios (incluida `docs/`) y `git push` a `main`. GitHub Pages actualiza el sitio en uno o dos minutos.
+Después de `npm run build` (y `npm test`), hacer commit de los cambios (incluida `docs/`) y `git push` a `main`. GitHub Pages actualiza el sitio en uno o dos minutos.
