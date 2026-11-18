@@ -470,3 +470,14 @@
 .coverage-svg.zoomed .gal-box, .coverage-svg.zoomed .gal-label{opacity:0;}
 .coverage-svg .gal-box, .coverage-svg .gal-label{transition:opacity .3s;}
 .coverage-svg.zoomed .prov{stroke-width:.6;}
+
+/* Por qué Equinoccial */
+.why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.why-card{background:#161616;border:1px solid rgba(192,192,192,0.12);border-radius:10px;padding:24px;transition:border-color .2s, transform .2s;}
+.why-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.why-icon{width:48px;height:48px;border-radius:10px;background:rgba(255,193,7,0.1);border:1px solid rgba(255,193,7,0.35);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.why-icon svg{width:26px;height:26px;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.why-card h3{font-family:'Barlow Semi Condensed',sans-serif;font-size:20px;margin-bottom:6px;}
+.why-card p{color:var(--light-gray);font-size:13px;line-height:1.55;}
+@media (max-width:900px){.why-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}.why-card{padding:18px;}}
+@media (max-width:560px){.why-card h3{font-size:17px;}.why-card p{font-size:12px;}.why-icon{width:40px;height:40px;margin-bottom:12px;}.why-icon svg{width:22px;height:22px;}}
