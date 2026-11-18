@@ -158,6 +158,12 @@ function build() {
     html = fill(html, "CONTENT", content);
     html = fill(html, "FOOTER", footerForPage);
 
+    // Marca de versión en imágenes y videos (?v=...): si cambias una foto con el mismo nombre,
+    // los navegadores descargan la nueva en lugar de mostrar la vieja guardada en caché
+    html = html.replace(/(src|poster|href)="(assets\/img\/[^"?#]+)"/g, (m, attr, ruta) =>
+      fs.existsSync(path.join(ROOT, ruta)) ? attr + '="' + ruta + "?v=" + version(ruta) + '"' : m
+    );
+
     // La página 404 puede abrirse desde cualquier ruta: usa enlaces absolutos al sitio
     if (page.outputFile === "404.html") {
       html = html.replace(/(href|src)="(?!https?:|mailto:|tel:|#|\/)([^"]+)"/g, '$1="' + SITE_URL + '$2"');

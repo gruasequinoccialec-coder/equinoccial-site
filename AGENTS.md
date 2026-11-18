@@ -33,6 +33,7 @@ Sistema de ensamblado por plantillas:
 - `build.js` también genera `docs/sitemap.xml` y `docs/robots.txt`, y contiene `SITE_URL` (dirección pública usada en etiquetas para redes sociales, sitemap y datos estructurados). Al conectar un dominio propio, cambiar `SITE_URL` y agregar `public/CNAME`.
 - Video del hero: `hero-video-mobile.mp4` (640 px, para pantallas ≤ 700 px) y `hero-video.mp4` (1280 px). Mantenerlos livianos (≈1 MB y ≈3 MB).
 - La sección de certificaciones está comentada en `pages/index.content.html` hasta tener logos reales.
+- `build.js` agrega una marca de versión (`?v=` + huella del archivo) a estilos, código, imágenes y videos, para que los navegadores no muestren versiones viejas en caché al reemplazar un archivo con el mismo nombre.
 - `docs/` — salida generada y publicada. **Nunca editar `docs/` a mano**: `npm run build` la borra y la regenera.
 
 ## Tareas comunes
