@@ -66,19 +66,20 @@
     statusMsg.innerHTML = html;
   }
 
+  // Mensaje sin emojis: algunos teléfonos (sobre todo iPhone) muestran los emojis como "�" cuando llegan por enlace
   function buildWhatsAppText(d){
     var lines = [
-      "\u{1F3D7}️ *Nueva solicitud de cotización*",
-      "_Equinoccial – Maniobras e Izajes_",
+      "*Nueva solicitud de cotización*",
+      "Grúas Equinoccial - Maniobras e Izajes",
       "",
-      "\u{1F464} *Nombre:* " + d.nombre
+      "*Nombre:* " + d.nombre
     ];
-    if(d.empresa) lines.push("\u{1F3E2} *Empresa:* " + d.empresa);
-    lines.push("\u{1F4DE} *Teléfono:* " + d.telefono);
-    lines.push("\u{2709}️ *Correo:* " + d.email);
-    if(d.sector) lines.push("\u{2699}️ *Sector:* " + d.sector);
-    if(d.servicio) lines.push("\u{1F69B} *Servicio:* " + d.servicio);
-    if(d.mensaje){ lines.push(""); lines.push("\u{1F4DD} *Detalle:*"); lines.push(d.mensaje); }
+    if(d.empresa) lines.push("*Empresa:* " + d.empresa);
+    lines.push("*Teléfono:* " + d.telefono);
+    lines.push("*Correo:* " + d.email);
+    if(d.sector) lines.push("*Sector:* " + d.sector);
+    if(d.servicio) lines.push("*Servicio:* " + d.servicio);
+    if(d.mensaje){ lines.push(""); lines.push("*Detalle:*"); lines.push(d.mensaje); }
     return encodeURIComponent(lines.join("\n"));
   }
 
