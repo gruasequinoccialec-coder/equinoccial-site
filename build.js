@@ -78,6 +78,13 @@ const PAGES = [
       '<script type="application/ld+json">' + JSON.stringify(LOCAL_BUSINESS) + "</script>",
   },
   {
+    contentFile: "pages/flota.content.html",
+    outputFile: "flota.html",
+    title: "Catálogo técnico de flota — Equinoccial Maniobras e Izajes",
+    description:
+      "Grúas telescópicas de 20 a 50 toneladas, camiones grúa con brazo articulado de 6 a 12 toneladas, manipulador telescópico y montacargas. Alquiler en Ambato y todo el Ecuador.",
+  },
+  {
     contentFile: "pages/blog.content.html",
     outputFile: "blog.html",
     title: "Blog — Equinoccial Maniobras e Izajes",

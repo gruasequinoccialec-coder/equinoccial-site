@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "docs");
-const PAGES = ["index.html", "blog.html", "privacidad.html", "404.html"];
+const PAGES = ["index.html", "flota.html", "blog.html", "privacidad.html", "404.html"];
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".jpg": "image/jpeg", ".png": "image/png", ".mp4": "video/mp4", ".xml": "application/xml", ".txt": "text/plain" };
 
 const errores = [];
@@ -39,7 +39,7 @@ const BASE = `http://127.0.0.1:${server.address().port}/`;
 // 1) Archivos y enlaces internos
 console.log("\nEnlaces y archivos");
 const SITE_URL = (fs.readFileSync(path.join(ROOT, "..", "build.js"), "utf-8").match(/SITE_URL = "([^"]+)"/) || [])[1];
-const idsInicio = new Set([...fs.readFileSync(path.join(ROOT, "index.html"), "utf-8").matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
+const idsDe = (archivo) => new Set([...fs.readFileSync(path.join(ROOT, archivo), "utf-8").matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
 let revisados = 0;
 for (const page of PAGES) {
   const html = fs.readFileSync(path.join(ROOT, page), "utf-8");
@@ -49,7 +49,8 @@ for (const page of PAGES) {
     if (/^(https?:|mailto:|tel:|data:)/.test(u)) continue;
     const [archivo, ancla] = u.split("?")[0].split("#");
     if (archivo && !fs.existsSync(path.join(ROOT, archivo))) fallo(`${page}: no existe "${ref}"`);
-    if (ancla && ancla !== "top" && (archivo === "" || archivo === "index.html") && !idsInicio.has(ancla)) fallo(`${page}: el enlace "${ref}" apunta a una sección que no existe`);
+    const destino = archivo || page;
+    if (ancla && ancla !== "top" && destino.endsWith(".html") && fs.existsSync(path.join(ROOT, destino)) && !idsDe(destino).has(ancla)) fallo(`${page}: el enlace "${ref}" apunta a una sección que no existe`);
     revisados++;
   }
 }

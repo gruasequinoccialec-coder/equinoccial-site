@@ -43,6 +43,10 @@ Sistema de ensamblado por plantillas:
 - **Editar el blog**: `pages/blog.content.html`.
 - **Colores / estilos**: `assets/css/styles.css`; los colores de marca están en `:root`.
 
+## Catálogo técnico
+
+`pages/flota.content.html` → `flota.html`: catálogo con estilo de dossier (secciones 01, 02, 03 con fondo negro/dorado y tarjetas de fotos). El botón "Ver catálogo técnico completo" de la página de inicio lo abre en una pestaña nueva. Los camiones grúa y equipos de apoyo solo están aquí (`flota.html#camiones`, `#apoyo`).
+
 ## Mapa de cobertura
 
 Los datos están en el bloque `<script type="application/json" id="coverageData">` de `pages/index.content.html`: `base` y la lista `trabajos` (titulo, lugar, provincia, lat, lon, sector, detalle, enlace). Los puntos que quedan juntos se separan solos; `npm test` comprueba que cada punto se pueda tocar.
