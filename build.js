@@ -38,6 +38,11 @@ const LOCAL_BUSINESS = {
   image: SITE_URL + "assets/img/hero-poster.jpg",
   logo: SITE_URL + "icon-192.png",
   telephone: "+593988145824",
+  contactPoint: [
+    { "@type": "ContactPoint", telephone: "+593988145824", contactType: "customer service", areaServed: "EC", availableLanguage: "es" },
+    { "@type": "ContactPoint", telephone: "+593968759686", contactType: "customer service", areaServed: "EC", availableLanguage: "es", description: "WhatsApp" },
+    { "@type": "ContactPoint", telephone: "+593983616335", contactType: "customer service", areaServed: "EC", availableLanguage: "es" },
+  ],
   email: "gruasequinoccial.ec@gmail.com",
   address: {
     "@type": "PostalAddress",

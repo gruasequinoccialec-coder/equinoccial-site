@@ -58,7 +58,7 @@
   if(!form) return;
   var statusMsg = document.getElementById('quote-form-status');
   var submitBtn = form.querySelector('button[type="submit"]');
-  var WHATSAPP_NUMBER = "593988145824"; // código de país sin +, sin espacios
+  var WHATSAPP_NUMBER = "593968759686"; // código de país sin +, sin espacios
 
   function showStatus(type, html){
     statusMsg.hidden = false;
