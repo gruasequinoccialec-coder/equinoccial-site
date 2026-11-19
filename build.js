@@ -84,12 +84,14 @@ const PAGES = [
     description:
       "Grúas telescópicas de 20 a 50 toneladas, camiones grúa con brazo articulado de 6 a 12 toneladas, manipulador telescópico y montacargas. Alquiler en Ambato y todo el Ecuador.",
   },
-  {
-    contentFile: "pages/blog.content.html",
-    outputFile: "blog.html",
-    title: "Blog — Equinoccial Maniobras e Izajes",
-    description: "Noticias, casos de proyectos y consejos técnicos de Equinoccial.",
-  },
+  // Blog oculto hasta tener artículos. Para activarlo: quitar los comentarios
+  // y volver a poner el enlace "Blog" en partials/header.html y partials/footer.html.
+  // {
+  //   contentFile: "pages/blog.content.html",
+  //   outputFile: "blog.html",
+  //   title: "Blog — Equinoccial Maniobras e Izajes",
+  //   description: "Noticias, casos de proyectos y consejos técnicos de Equinoccial.",
+  // },
   {
     contentFile: "pages/privacidad.content.html",
     outputFile: "privacidad.html",

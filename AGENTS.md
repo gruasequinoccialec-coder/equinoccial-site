@@ -49,7 +49,7 @@ Sistema de ensamblado por plantillas:
 
 - **Teléfonos y WhatsApp**: teléfonos +593 98 814 5824, +593 96 875 9686 y +593 98 361 6335; WhatsApp oficial y número de emergencias (botón "Llamar ahora" del rescate 24/7): +593 96 875 9686. Aparecen en `partials/footer.html` (lista de contacto y botón flotante), `pages/index.content.html` (bloque de cotización y botón "Llamar ahora"), `assets/js/script.js` (`WHATSAPP_NUMBER` del formulario) y `build.js` (datos para Google). Después: `npm run build`.
 - **Agregar una página**: crear `pages/<nombre>.content.html`, añadirla a `PAGES` en `build.js`, luego `npm run build`.
-- **Editar el blog**: `pages/blog.content.html`.
+- **Blog**: oculto hasta tener artículos (`pages/blog.content.html` se conserva). Para activarlo, quitar los comentarios de su entrada en `PAGES` (`build.js`) y volver a poner el enlace "Blog" en el header y el footer.
 - **Colores / estilos**: `assets/css/styles.css`; los colores de marca están en `:root`.
 
 ## Catálogo técnico
