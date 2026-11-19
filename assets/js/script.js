@@ -184,18 +184,13 @@
   var data;
   try { data = JSON.parse(dataEl.textContent); } catch(e){ return; }
   var base = data.base;
-  var trabajos = (data.trabajos || []).filter(function(t){ return typeof t.lat === 'number' && typeof t.lon === 'number'; });
+  // Solo Ecuador continental (el mapa no incluye Galápagos)
+  var trabajos = (data.trabajos || []).filter(function(t){ return typeof t.lat === 'number' && typeof t.lon === 'number' && t.lon > -82; });
 
   var NS = 'http://www.w3.org/2000/svg';
   var minx = parseFloat(svg.dataset.minx), maxy = parseFloat(svg.dataset.maxy);
   var K = parseFloat(svg.dataset.k), pad = parseFloat(svg.dataset.pad);
-  var gal = (svg.dataset.gal || '').split(',').map(parseFloat); // [lon0, lat0, escala, lonDestino, latDestino]
-
   function project(lat, lon){
-    if(lon < -86 && gal.length === 5){ // Galápagos va en el recuadro, a escala reducida
-      lon = gal[3] + (lon - gal[0]) * gal[2];
-      lat = gal[4] + (lat - gal[1]) * gal[2];
-    }
     return [ (lon - minx) * K + pad, (maxy - lat) * K + pad ];
   }
   function norm(s){ return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim(); }
