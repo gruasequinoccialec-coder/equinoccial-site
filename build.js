@@ -25,7 +25,7 @@ const DIST = path.join(ROOT, "docs");
 
 // Dirección pública del sitio (con / al final). Cámbiala cuando tengas dominio propio,
 // por ejemplo "https://equinoccial.com/", y vuelve a compilar.
-const SITE_URL = "https://gruasequinoccialec-coder.github.io/equinoccial-site/";
+const SITE_URL = "https://gruasequinoccial.com/";
 
 // Datos estructurados para Google (empresa local). Solo se incluyen en la página de inicio.
 const LOCAL_BUSINESS = {
