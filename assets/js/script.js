@@ -384,3 +384,45 @@
 
   if(base) select(base, true, baseEl);
 })();
+
+// Navegación interna: al recargar, la página vuelve al inicio.
+// - Los enlaces a secciones (#flota, #contacto...) bajan a la sección sin dejar el # en la dirección.
+// - Si se entra con un enlace a una sección (ej. compartido por WhatsApp), se baja a esa sección
+//   y luego se limpia la dirección, para que una recarga empiece arriba.
+(function(){
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+
+  var page = location.pathname.split('/').pop() || 'index.html';
+  function cleanUrl(){
+    if(location.hash){ history.replaceState(null, '', location.pathname + location.search); }
+  }
+
+  if(location.hash){
+    // Dejar que el navegador baje a la sección y luego quitar el # de la dirección
+    window.addEventListener('load', function(){
+      var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if(target){ target.scrollIntoView(); }
+      setTimeout(cleanUrl, 50);
+    });
+  } else {
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+  }
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if(!a || a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    var href = a.getAttribute('href');
+    var i = href.indexOf('#');
+    if(i < 0) return;
+    var file = href.slice(0, i), id = href.slice(i + 1);
+    if(file && file !== page) return; // enlace a otra página: comportamiento normal
+    e.preventDefault();
+    if(id === 'top' || id === ''){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    else {
+      var target = document.getElementById(id);
+      if(target){ target.scrollIntoView({ behavior: 'smooth' }); }
+    }
+    cleanUrl();
+  });
+})();

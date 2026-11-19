@@ -90,6 +90,19 @@ for (const [nombre, viewport, movil] of [["celular", { width: 390, height: 844 }
     else ok("menú móvil abre y cierra");
   }
 
+  // Navegación: los enlaces del menú no dejan # en la dirección y al recargar se vuelve al inicio
+  if (!movil) {
+    await page.click('header nav a[href="#contacto"]');
+    await page.waitForTimeout(900);
+    const bajo = await page.evaluate(() => window.scrollY);
+    const conAncla = await page.evaluate(() => location.hash);
+    await page.reload({ waitUntil: "load" });
+    await page.waitForTimeout(500);
+    const trasRecargar = await page.evaluate(() => window.scrollY);
+    if (bajo < 200 || conAncla || trasRecargar > 5) fallo(`navegación: bajó ${bajo}px, ancla "${conAncla}", tras recargar quedó en ${trasRecargar}px`);
+    else ok("menú baja a la sección y al recargar vuelve al inicio");
+  }
+
   // Formulario: no debe enviarse vacío ni sin aceptar la privacidad
   let envios = 0;
   page.on("request", (r) => { if (r.url().includes("web3forms")) envios++; });
