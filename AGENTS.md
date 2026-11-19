@@ -6,7 +6,7 @@ Guía para asistentes de programación que trabajen en este repositorio.
 
 Sitio web estático de Equinoccial (Maniobras e Izajes — alquiler de grúas e izajes industriales, Ambato, Ecuador). Sin framework: HTML/CSS/JS plano ensamblado por un pequeño script de Node.js. Todo el contenido del sitio está en español.
 
-Repositorio: `alexanderua29/equinoccial-site` (rama `main`). Se publica con GitHub Pages desde la carpeta `docs/`.
+Repositorio: `gruasequinoccialec-coder/equinoccial-site` (rama `main`). Se publica con GitHub Pages desde la carpeta `docs/`.
 
 ## Comandos
 

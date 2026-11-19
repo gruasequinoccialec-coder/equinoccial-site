@@ -86,7 +86,7 @@ archivo `public/CNAME` con el dominio dentro, compila con `npm run build` y publ
 ## 7. Publicar cambios
 
 El sitio se publica con **GitHub Pages** desde la carpeta `docs/` de la rama `main`
-(repositorio `alexanderua29/equinoccial-site`). Después de compilar:
+(repositorio `gruasequinoccialec-coder/equinoccial-site`). Después de compilar:
 
 ```
 git add .
