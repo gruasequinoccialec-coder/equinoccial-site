@@ -401,7 +401,15 @@
     // Dejar que el navegador baje a la sección y luego quitar el # de la dirección
     window.addEventListener('load', function(){
       var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-      if(target){ target.scrollIntoView(); }
+      if(target){
+        // Las tarjetas (ej. una grúa del catálogo) se centran en pantalla y se resaltan un momento
+        var esTarjeta = target.classList.contains('cat-card');
+        target.scrollIntoView(esTarjeta ? { block: 'center' } : undefined);
+        if(esTarjeta){
+          target.classList.add('is-target');
+          setTimeout(function(){ target.classList.remove('is-target'); }, 2600);
+        }
+      }
       setTimeout(cleanUrl, 50);
     });
   } else {

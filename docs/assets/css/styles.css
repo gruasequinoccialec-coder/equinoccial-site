@@ -535,3 +535,14 @@
   .cat-card img{border-radius:9px;}
   .cat-card figcaption{font-size:12px;margin-top:8px;}
 }
+
+/* Tarjetas de grúas en inicio enlazan al catálogo */
+a.fleet-card{display:block;color:inherit;}
+a.fleet-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+.fleet-card .fleet-info::after{content:'Ver en catálogo →';display:block;margin-top:10px;color:var(--gold);font-size:12px;font-weight:600;opacity:.85;}
+.fleet-card:hover .fleet-info::after{opacity:1;}
+/* Resaltado al llegar a una grúa del catálogo */
+.cat-card{scroll-margin-top:100px;}
+.cat-card.is-target{animation:catPulse 2.6s ease;}
+@keyframes catPulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.35);}20%,60%{box-shadow:0 0 0 6px rgba(255,193,7,0.85), 0 10px 30px rgba(0,0,0,0.35);transform:scale(1.03);}}
+@media (prefers-reduced-motion: reduce){.cat-card.is-target{animation:none;box-shadow:0 0 0 5px var(--gold);}}
