@@ -70,9 +70,9 @@ const PAGES = [
   {
     contentFile: "pages/index.content.html",
     outputFile: "index.html",
-    title: "Equinoccial — Maniobras e Izajes",
+    title: "Alquiler de grúas e izajes en Ambato | Equinoccial",
     description:
-      "Alquiler de grúas telescópicas, camiones grúa e izajes industriales en Ambato y a nivel nacional. Más de 25 años de experiencia.",
+      "Alquiler de grúas telescópicas de 20 a 50 toneladas, camiones grúa, izajes industriales y rescate pesado 24/7 en Ambato y todo el Ecuador. Más de 25 años de experiencia.",
     headExtra:
       '<link rel="preload" as="image" href="assets/img/hero-poster.jpg" imagesrcset="assets/img/hero-poster-640.jpg 640w, assets/img/hero-poster.jpg 1280w" imagesizes="100vw" fetchpriority="high">\n' +
       '<script type="application/ld+json">' + JSON.stringify(LOCAL_BUSINESS) + "</script>",
