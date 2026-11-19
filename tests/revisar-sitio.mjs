@@ -61,10 +61,11 @@ const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath
 for (const [nombre, viewport, movil] of [["celular", { width: 390, height: 844 }, true], ["PC", { width: 1440, height: 900 }, false]]) {
   console.log(`\nVista ${nombre}`);
   const ctx = await browser.newContext({ viewport, isMobile: movil, hasTouch: movil });
-  await ctx.route(/fonts\.(googleapis|gstatic)\.com|web3forms\.com/, (r) => r.abort()); // sin internet externo
+  await ctx.route(/web3forms\.com/, (r) => r.abort()); // sin internet externo
   const page = await ctx.newPage();
   const jsErr = [];
   page.on("pageerror", (e) => jsErr.push(e.message));
+  page.on("console", (m) => { if (m.type() === "error" && /Content Security Policy|Refused to/i.test(m.text())) jsErr.push("bloqueado por la política de seguridad: " + m.text().slice(0, 160)); });
   page.on("response", (r) => { if (r.url().startsWith(BASE) && r.status() >= 400) jsErr.push(`recurso no encontrado: ${r.url().slice(BASE.length)}`); });
 
   for (const p of PAGES) {

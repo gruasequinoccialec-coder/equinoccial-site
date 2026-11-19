@@ -74,7 +74,7 @@ const PAGES = [
     description:
       "Alquiler de grúas telescópicas, camiones grúa e izajes industriales en Ambato y a nivel nacional. Más de 25 años de experiencia.",
     headExtra:
-      '<link rel="preload" as="image" href="assets/img/hero-poster.jpg" fetchpriority="high">\n' +
+      '<link rel="preload" as="image" href="assets/img/hero-poster.jpg" imagesrcset="assets/img/hero-poster-640.jpg 640w, assets/img/hero-poster.jpg 1280w" imagesizes="100vw" fetchpriority="high">\n' +
       '<script type="application/ld+json">' + JSON.stringify(LOCAL_BUSINESS) + "</script>",
   },
   {
@@ -159,16 +159,25 @@ function build() {
     html = fill(html, "DESCRIPTION", page.description);
     html = fill(html, "URL", url);
     html = fill(html, "SITE_URL", SITE_URL);
+    html = fill(html, "ORIGIN", new URL(SITE_URL).origin);
     html = fill(html, "ROBOTS", page.noindex ? '<meta name="robots" content="noindex">' : "");
     html = fill(html, "HEAD_EXTRA", page.headExtra || "");
     html = fill(html, "HEADER", headerForPage);
     html = fill(html, "CONTENT", content);
     html = fill(html, "FOOTER", footerForPage);
 
+    // Versiones pequeñas automáticas: si existe assets/img/NOMBRE-480.jpg, se agrega srcset
+    // para que los celulares descarguen la imagen liviana
+    html = html.replace(/<img src="(assets\/img\/([^"?]+?))\.jpg"(?![^>]*srcset)/g, (m, base) => {
+      const small = base + "-480.jpg";
+      if (!fs.existsSync(path.join(ROOT, small))) return m;
+      return '<img src="' + base + '.jpg" srcset="' + small + ' 480w, ' + base + '.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw"';
+    });
+
     // Marca de versión en imágenes y videos (?v=...): si cambias una foto con el mismo nombre,
     // los navegadores descargan la nueva en lugar de mostrar la vieja guardada en caché
-    html = html.replace(/(src|poster|href)="(assets\/img\/[^"?#]+)"/g, (m, attr, ruta) =>
-      fs.existsSync(path.join(ROOT, ruta)) ? attr + '="' + ruta + "?v=" + version(ruta) + '"' : m
+    html = html.replace(/assets\/(img|fonts)\/[^"?#\s,]+\.(jpg|png|webp|mp4|woff2)(?!\?)/g, (ruta) =>
+      fs.existsSync(path.join(ROOT, ruta)) ? ruta + "?v=" + version(ruta) : ruta
     );
 
     // La página 404 puede abrirse desde cualquier ruta: usa enlaces absolutos al sitio

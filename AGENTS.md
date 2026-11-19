@@ -36,6 +36,15 @@ Sistema de ensamblado por plantillas:
 - `build.js` agrega una marca de versión (`?v=` + huella del archivo) a estilos, código, imágenes y videos, para que los navegadores no muestren versiones viejas en caché al reemplazar un archivo con el mismo nombre.
 - `docs/` — salida generada y publicada. **Nunca editar `docs/` a mano**: `npm run build` la borra y la regenera.
 
+## Seguridad y rendimiento
+
+- **Política de seguridad (CSP)** en `partials/layout.html`: solo se permiten scripts, estilos, fuentes e imágenes del propio sitio, y envíos/conexiones a `api.web3forms.com`. Si se agrega un servicio externo (analítica, mapas, videos incrustados), hay que añadir su dominio a la CSP o el navegador lo bloqueará (`npm test` lo detecta).
+- **Sin scripts en línea**: todo el JavaScript va en `assets/js/script.js`.
+- **Tipografías locales** en `assets/fonts/` (Inter y Barlow Semi Condensed, licencia OFL): no se cargan recursos de Google ni de otros dominios al abrir la página.
+- **Imágenes livianas para celular**: si existe `assets/img/NOMBRE-480.jpg`, `build.js` agrega `srcset` automáticamente. Al subir una foto nueva de más de 600 px de ancho, crear también su versión de 480 px.
+- El enlace de video de cada trabajo del mapa solo se muestra si empieza con `https://`.
+- GitHub Actions corre con permisos de solo lectura.
+
 ## Tareas comunes
 
 - **Teléfonos y WhatsApp**: teléfonos +593 98 814 5824, +593 96 875 9686 y +593 98 361 6335; WhatsApp oficial y número de emergencias (botón "Llamar ahora" del rescate 24/7): +593 96 875 9686. Aparecen en `partials/footer.html` (lista de contacto y botón flotante), `pages/index.content.html` (bloque de cotización y botón "Llamar ahora"), `assets/js/script.js` (`WHATSAPP_NUMBER` del formulario) y `build.js` (datos para Google). Después: `npm run build`.

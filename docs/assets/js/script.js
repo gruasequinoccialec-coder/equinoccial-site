@@ -290,7 +290,7 @@
       '<h3>' + esc(item.titulo) + '</h3>' +
       '<div class="cov-place">' + esc(item.lugar) + (item.provincia ? ' · ' + esc(item.provincia) : '') + '</div>' +
       (item.detalle ? '<p>' + esc(item.detalle) + '</p>' : '') +
-      (item.enlace ? '<a class="cov-link" href="' + esc(item.enlace) + '" target="_blank" rel="noopener">Ver video del trabajo →</a>' : '');
+      (/^https:\/\//i.test(item.enlace || '') ? '<a class="cov-link" href="' + esc(item.enlace) + '" target="_blank" rel="noopener">Ver video del trabajo →</a>' : '');
     provsBox.querySelectorAll('button').forEach(function(b){
       b.classList.toggle('active', norm(b.dataset.prov) === norm(item.provincia));
     });
