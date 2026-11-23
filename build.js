@@ -65,6 +65,85 @@ const LOCAL_BUSINESS = {
   ],
 };
 
+// Páginas de servicio. Cada una tiene su contenido en pages/<archivo>.content.html.
+// "nombre" se usa en el bloque "Otros servicios" y en los datos para Google.
+const SERVICES = [
+  {
+    outputFile: "alquiler-gruas-telescopicas.html",
+    nombre: "Grúas telescópicas",
+    serviceType: "Alquiler de grúas telescópicas",
+    title: "Alquiler de grúas telescópicas de 20 a 50 toneladas en Ambato | Equinoccial",
+    description:
+      "Alquiler de grúas telescópicas autopropulsadas de 20 a 50 toneladas, con alcance de hasta 57 m con jib y operadores certificados. Base en Ambato y servicio en todo el Ecuador.",
+  },
+  {
+    outputFile: "camiones-grua.html",
+    nombre: "Camiones grúa",
+    serviceType: "Alquiler de camiones grúa",
+    title: "Alquiler de camiones grúa de 6 a 12 toneladas en Ambato | Equinoccial",
+    description:
+      "Camiones grúa con brazo hidráulico articulado de 6 a 12 toneladas y hasta 23 m de alcance, para carga, descarga y montaje en espacios reducidos. Ambato y todo el Ecuador.",
+  },
+  {
+    outputFile: "izajes-montaje-estructuras.html",
+    nombre: "Izajes y montaje de estructuras",
+    serviceType: "Izajes industriales y montaje de estructuras",
+    title: "Izajes industriales y montaje de estructuras en Ecuador | Equinoccial",
+    description:
+      "Planificación, simulación y ejecución de izajes industriales y montaje de estructuras metálicas, vallas, postes y equipos. Más de 25 años de experiencia desde Ambato.",
+  },
+  {
+    outputFile: "transporte-pesado.html",
+    nombre: "Transporte pesado",
+    serviceType: "Transporte de carga pesada y maquinaria",
+    title: "Transporte de carga pesada y maquinaria en Ecuador | Equinoccial",
+    description:
+      "Movilización de maquinaria y cargas con exceso de dimensiones o peso a nivel nacional, con carga y descarga con nuestros propios equipos de izaje. Base en Ambato.",
+  },
+  {
+    outputFile: "rescate-pesado-24-7.html",
+    nombre: "Rescate pesado 24/7",
+    serviceType: "Rescate y remolque de vehículos pesados",
+    title: "Rescate pesado 24/7 en Ambato y todo el Ecuador | Grúas Equinoccial",
+    description:
+      "Salvamento, remolque y liberación de camiones, volquetas y maquinaria pesada las 24 horas, los 365 días. Llama al 096 875 9686. Base en Ambato, cobertura nacional.",
+  },
+];
+
+// Datos para Google de cada página de servicio
+function serviceSchema(s) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: s.serviceType,
+    serviceType: s.serviceType,
+    description: s.description,
+    url: SITE_URL + s.outputFile,
+    areaServed: { "@type": "Country", name: "Ecuador" },
+    provider: {
+      "@type": "LocalBusiness",
+      name: LOCAL_BUSINESS.name,
+      url: SITE_URL,
+      telephone: "+593968759686",
+      address: LOCAL_BUSINESS.address,
+    },
+  };
+}
+
+// Bloque "Otros servicios" al final de cada página de servicio (sin la página actual)
+function otherServices(current) {
+  const links = SERVICES.filter((s) => s.outputFile !== current)
+    .map((s) => '    <a href="' + s.outputFile + '">' + s.nombre + "</a>")
+    .join("\n");
+  return (
+    '<section class="block svc-others">\n' +
+    '  <div class="block-eyebrow">OTROS SERVICIOS</div>\n' +
+    '  <h2 class="section-title">También podemos ayudarte con</h2>\n' +
+    '  <nav class="catalog-jump" aria-label="Otros servicios">\n' + links + "\n  </nav>\n" +
+    "</section>"
+  );
+}
+
 // Define aquí cada página del sitio: archivo de salida, título y descripción SEO
 const PAGES = [
   {
@@ -84,6 +163,13 @@ const PAGES = [
     description:
       "Grúas telescópicas de 20 a 50 toneladas, camiones grúa con brazo articulado de 6 a 12 toneladas, manipulador telescópico y montacargas. Alquiler en Ambato y todo el Ecuador.",
   },
+  ...SERVICES.map((s) => ({
+    contentFile: "pages/" + s.outputFile.replace(".html", ".content.html"),
+    outputFile: s.outputFile,
+    title: s.title,
+    description: s.description,
+    headExtra: '<script type="application/ld+json">' + JSON.stringify(serviceSchema(s)) + "</script>",
+  })),
   // Blog oculto hasta tener artículos. Para activarlo: quitar los comentarios
   // y volver a poner el enlace "Blog" en partials/header.html y partials/footer.html.
   // {
@@ -167,6 +253,7 @@ function build() {
     html = fill(html, "HEADER", headerForPage);
     html = fill(html, "CONTENT", content);
     html = fill(html, "FOOTER", footerForPage);
+    html = fill(html, "OTROS_SERVICIOS", otherServices(page.outputFile));
 
     // Versiones pequeñas automáticas: si existe assets/img/NOMBRE-480.jpg, se agrega srcset
     // para que los celulares descarguen la imagen liviana

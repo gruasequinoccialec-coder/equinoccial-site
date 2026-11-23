@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "docs");
-const PAGES = ["index.html", "flota.html", "privacidad.html", "404.html"];
+const PAGES = ["index.html", "flota.html", "alquiler-gruas-telescopicas.html", "camiones-grua.html", "izajes-montaje-estructuras.html", "transporte-pesado.html", "rescate-pesado-24-7.html", "privacidad.html", "404.html"];
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".jpg": "image/jpeg", ".png": "image/png", ".mp4": "video/mp4", ".xml": "application/xml", ".txt": "text/plain" };
 
 const errores = [];

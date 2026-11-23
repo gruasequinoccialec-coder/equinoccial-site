@@ -553,3 +553,52 @@ a.fleet-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
 .cat-card.is-target{animation:catPulse 2.6s ease;}
 @keyframes catPulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.35);}20%,60%{box-shadow:0 0 0 6px rgba(255,193,7,0.85), 0 10px 30px rgba(0,0,0,0.35);transform:scale(1.03);}}
 @media (prefers-reduced-motion: reduce){.cat-card.is-target{animation:none;box-shadow:0 0 0 5px var(--gold);}}
+
+/* Páginas de servicio */
+.svc-hero .catalog-intro{font-size:16px;}
+.svc-hero .hero-ctas{margin-top:24px;flex-wrap:wrap;}
+.svc-intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center;}
+.svc-intro p{color:var(--light-gray);font-size:15px;margin-bottom:14px;max-width:640px;}
+.svc-intro ul{color:var(--light-gray);font-size:15px;margin:0 0 14px 20px;max-width:640px;}
+.svc-intro li{margin-bottom:6px;}
+.svc-intro strong{color:var(--white);font-weight:600;}
+.svc-figure{margin:0;max-width:460px;justify-self:center;width:100%;}
+.svc-figure img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:1px solid rgba(255,193,7,0.35);}
+.svc-figure figcaption{color:var(--light-gray);font-size:12px;margin-top:8px;}
+.svc-table-wrap{overflow-x:auto;}
+.svc-table{width:100%;max-width:820px;border-collapse:collapse;font-size:14px;}
+.svc-table th, .svc-table td{text-align:left;padding:12px 14px;border-bottom:1px solid rgba(192,192,192,0.15);}
+.svc-table th{color:var(--gold);font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:600;}
+.svc-table td{color:var(--light-gray);}
+.svc-table td:first-child{color:var(--white);font-weight:600;white-space:nowrap;}
+.svc-steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:paso;}
+.svc-steps li{background:#161616;border:1px solid rgba(192,192,192,0.12);border-radius:10px;padding:24px;counter-increment:paso;}
+.svc-steps li::before{content:counter(paso, decimal-leading-zero);display:block;font-family:'Barlow Semi Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:10px;}
+.svc-steps h3{font-family:'Barlow Semi Condensed',sans-serif;font-size:20px;margin-bottom:6px;}
+.svc-steps p{color:var(--light-gray);font-size:13px;line-height:1.55;}
+.svc-jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.svc-job{background:#161616;border:1px solid rgba(192,192,192,0.12);border-radius:10px;padding:20px;}
+.svc-job h3{font-family:'Barlow Semi Condensed',sans-serif;font-size:19px;margin:12px 0 4px;}
+.svc-job p{color:var(--light-gray);font-size:13px;}
+.faq{max-width:820px;}
+.faq details{border-bottom:1px solid rgba(192,192,192,0.15);}
+.faq summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;position:relative;font-weight:600;font-size:15px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';position:absolute;right:4px;top:14px;color:var(--gold);font-size:22px;font-weight:400;}
+.faq details[open] summary::after{content:'−';}
+.faq details p{color:var(--light-gray);font-size:14px;padding:0 0 18px;max-width:720px;}
+.svc-emergency{background:#161616;border:1px solid var(--gold);border-radius:12px;padding:24px;}
+.svc-emergency h2{font-family:'Barlow Semi Condensed',sans-serif;font-size:22px;margin-bottom:10px;}
+.svc-emergency ol{color:var(--light-gray);font-size:14px;margin-left:20px;}
+.svc-emergency li{margin-bottom:6px;}
+.svc-emergency .note{color:var(--light-gray);font-size:13px;margin-top:12px;}
+.svc-links{margin-top:28px;}
+.svc-links .block-eyebrow{margin-bottom:12px;}
+a.project-card{display:block;color:inherit;}
+a.project-card .project-info::after{content:'Ver servicio →';display:block;margin-top:10px;color:var(--gold);font-size:12px;font-weight:600;}
+@media (max-width:900px){
+  .svc-intro{grid-template-columns:1fr;gap:28px;}
+  .svc-figure{justify-self:start;}
+  .svc-steps{grid-template-columns:1fr;gap:12px;}
+  .svc-steps li{padding:18px;}
+}
