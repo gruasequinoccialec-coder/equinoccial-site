@@ -43,7 +43,7 @@ const LOCAL_BUSINESS = {
     { "@type": "ContactPoint", telephone: "+593968759686", contactType: "customer service", areaServed: "EC", availableLanguage: "es", description: "WhatsApp" },
     { "@type": "ContactPoint", telephone: "+593983616335", contactType: "customer service", areaServed: "EC", availableLanguage: "es" },
   ],
-  email: "gruasequinoccial.ec@gmail.com",
+  email: "info@gruasequinoccial.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Av. Panamericana 61, Cunchibamba",
